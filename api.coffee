@@ -2,7 +2,7 @@ js2xmlparser = require 'js2xmlparser'
 request = require 'request'
 {getTimestamp, getAuthorization, getSig, merge} = require './util'
 
-create = (config) ->
+init = (config) ->
   accountSid = config.accountSid
   authToken = config.authToken
   appId = config.appId
@@ -143,4 +143,4 @@ create = (config) ->
   confAlarmClock: confApiFactory 'ConfAlarmClock'
   queryConfState: confApiFactory 'QueryConfState'
 
-exports.create = create
+exports.init = init
