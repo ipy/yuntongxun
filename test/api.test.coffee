@@ -1,6 +1,6 @@
 fs = require 'fs'
 path = require 'path'
-{create} = require '../api'
+{init} = require '../api'
 uuid = require 'uuid'
 should = require 'should'
 
@@ -9,7 +9,7 @@ config = JSON.parse fs.readFileSync path.resolve __dirname, 'test.config.json'
 describe 'api', ->
   api = null
   before ->
-    api = create
+    api = init
       accountSid: config.accountSid
       authToken: config.authToken
       appId: config.appId
@@ -36,6 +36,7 @@ describe 'api', ->
         friendlyName: name
       , (e ,r, b) ->
         if e then return done e
+        console.log b
         b.should.be.an.Object
         b.statusCode.should.equal '000000'
         b.SubAccount.should.be.an.Object
@@ -59,18 +60,18 @@ describe 'api', ->
     #       b.statusCode.should.equal '000000'
     #       done()
   # getSubAccounts
-  describe 'getSubAccounts', ->
-    it 'should return subaccounts', (done) ->
-      api.getSubAccounts (e, r, b) ->
-        if e then return done e
-        b.statusCode.should.equal '000000'
-        b.SubAccount.should.be.an.Array
-        if b.SubAccount.length > 0
-          b.SubAccount[0].should.have.keys [
-            'subAccountSid', 'voipAccount', 'dateCreated',
-            'friendlyName', 'voipPwd', 'subToken'
-          ]
-        done()
+  # describe 'getSubAccounts', ->
+  #   it 'should return subaccounts', (done) ->
+  #     api.getSubAccounts (e, r, b) ->
+  #       if e then return done e
+  #       b.statusCode.should.equal '000000'
+  #       b.SubAccount.should.be.an.Array
+  #       if b.SubAccount.length > 0
+  #         b.SubAccount[0].should.have.keys [
+  #           'subAccountSid', 'voipAccount', 'dateCreated',
+  #           'friendlyName', 'voipPwd', 'subToken'
+  #         ]
+  #       done()
   # querySubAccountByName
   # billRecords
 
