@@ -36,7 +36,6 @@ describe 'api', ->
         friendlyName: name
       , (e ,r, b) ->
         if e then return done e
-        console.log b
         b.should.be.an.Object
         b.statusCode.should.equal '000000'
         b.SubAccount.should.be.an.Object

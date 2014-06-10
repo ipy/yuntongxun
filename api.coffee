@@ -88,7 +88,7 @@ init = (config) ->
         params: args
         callback: (e, r, b) ->
           log e, r, b, name
-          callback? e, r, b
+          callback? e, b, r
   confApiFactory = (action) ->
     params = {}
     if action.toLowerCase() is 'createconf'
@@ -108,7 +108,7 @@ init = (config) ->
         params: params
         callback: (e, r, b) ->
           log e, r, b, action
-          callback? e, r, b
+          callback? e, b, r
 
   # Account
   accountInfo: apiFactory 'AccountInfo', '/{SoftVersion}/Accounts/{accountSid}/AccountInfo', 'get'
